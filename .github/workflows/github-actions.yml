@@ -39,6 +39,7 @@ jobs:
 
       - name: Clean and compile
         run: |
+          cd philo
           echo "🔨 Compiling philosopher..."
           make
           echo "✅ Compilation successful!"
