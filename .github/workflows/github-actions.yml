@@ -35,7 +35,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y make clang
 
-      - name: Clean and compile
+      - name: Compile
         run: |
           cd philo
           echo "🔨 Compiling philosopher..."
