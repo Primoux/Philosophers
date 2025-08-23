@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:53:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 01:01:26 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/08/24 01:12:25 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "style.h"
 #include "utils.h"
 #include <unistd.h>
-
 
 int	check_nbr_arg(int ac)
 {
