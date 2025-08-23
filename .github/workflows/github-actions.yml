@@ -1,0 +1,44 @@
+name: Philosopher CI
+run-name: Norminette + Compilation 🚀
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  Norminette:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install norminette
+
+      - name: Check norminette
+        run: |
+          echo "🔍 Running norminette..."
+          norminette -R CheckForbiddenSourceHeader . | grep -v OK
+          echo "✅ Norminette check completed!"
+
+
+  Compilation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y make clang
+
+      - name: Clean and compile
+        run: |
+          echo "🔨 Compiling philosopher..."
+          make
+          echo "✅ Compilation successful!"
