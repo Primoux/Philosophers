@@ -1,31 +1,58 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 16:47:53 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/23 16:47:54 by enchevri         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "philo.h"
 #include "style.h"
 
+int				a = 0;
+pthread_mutex_t	mutex;
+int				count;
+
 void	*thread_start(void *arg)
 {
-	(void)arg;
-	printf("%sHello from the thread%s\n", GREEN, RST);
+	int	i;
+	int j = 0;
+
+	i = *(int *)arg;
+	// printf("%sBjr je suis nouveau%s\n", BLUE, RST);
+	while (j < count)
+	{
+		pthread_mutex_lock(&mutex);
+		printf("%sLe thread[%d] 1 a  %d %s\n", GREEN, i, a, RED);
+		a++;
+		pthread_mutex_unlock(&mutex);
+		j++;
+	}
 	return (NULL);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	pthread_t	thread;
-
-	pthread_create(&thread, NULL, thread_start, NULL);
-	pthread_join(thread, NULL);
-	printf("%sHello from the main%s\n", RED, RST);
+	pthread_t	*thread;
+	int			nbr_thread;
+	int			i;
+	
+	nbr_thread = atoi(argv[1]);
+	int			ids[nbr_thread];
+	i = 0;
+	if (argc != 3)
+	{
+		printf("T con ou quoi\n");
+		return (1);
+	}
+	for (int j = 0; j < nbr_thread; j++)
+	{
+		ids[j] = j; 
+	}
+	thread = malloc(sizeof(pthread_t) * nbr_thread + 1);
+	count = atoi(argv[2]);
+	pthread_mutex_init(&mutex, NULL);
+	for (int j = 0; j < nbr_thread; j++)
+		pthread_create(&thread[j], NULL, thread_start, &ids[j]);
+	i = 0;
+	while (i < nbr_thread)
+	{
+		pthread_join(thread[i], NULL);
+		++i;
+	}
+	pthread_mutex_destroy(&mutex);
+	printf("%s%d%s\n", RED, a, RST);
 	return (0);
 }
