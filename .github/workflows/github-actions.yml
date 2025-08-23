@@ -23,8 +23,6 @@ jobs:
         run: |
           echo "🔍 Running norminette..."
           norminette -R CheckForbiddenSourceHeader . | grep -v OK
-          echo "✅ Norminette check completed!"
-
 
   Compilation:
     runs-on: ubuntu-latest
