@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 23:02:14 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/23 23:51:12 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/08/24 00:50:59 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #  define EXIT_SUCCESS 0
 # endif
 # ifndef EXIT_FAILURE
-#  define EXIT_FAILURE 0
+#  define EXIT_FAILURE 1
 # endif
 
 enum	e_bool
