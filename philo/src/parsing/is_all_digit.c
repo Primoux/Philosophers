@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_all_digit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 16:47:53 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 00:25:46 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/08/23 23:17:28 by enchevri          #+#    #+#             */
+/*   Updated: 2025/08/24 00:36:05 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
-#include "philo.h"
-#include "style.h"
+#include "utils.h"
 
-int	main(int argc, char **argv)
+int	is_all_digits(const char *str)
 {
-	t_sim_data	*sim_data;
+	int	i;
 
-	sim_data = NULL;
-	if (parse_argument(argc, argv, &sim_data))
-	{
-		dprintf(2, "%sC'est pt%s\n", RED, RST);
+	i = 0;
+	if (!str[i])
 		return (EXIT_FAILURE);
+	while (str[i])
+	{
+		if (str[i] > '9' || str[i] < '0')
+			return (EXIT_FAILURE);
+		++i;
 	}
-	print_sim(*sim_data);
-	free(sim_data);
 	return (EXIT_SUCCESS);
 }

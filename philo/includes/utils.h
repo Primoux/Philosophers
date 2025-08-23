@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 16:47:53 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 00:25:46 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/08/23 23:02:14 by enchevri          #+#    #+#             */
+/*   Updated: 2025/08/23 23:51:12 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
-#include "philo.h"
-#include "style.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int	main(int argc, char **argv)
+# ifndef EXIT_SUCCESS
+#  define EXIT_SUCCESS 0
+# endif
+# ifndef EXIT_FAILURE
+#  define EXIT_FAILURE 0
+# endif
+
+enum	e_bool
 {
-	t_sim_data	*sim_data;
+	FALSE,
+	TRUE
+};
 
-	sim_data = NULL;
-	if (parse_argument(argc, argv, &sim_data))
-	{
-		dprintf(2, "%sC'est pt%s\n", RED, RST);
-		return (EXIT_FAILURE);
-	}
-	print_sim(*sim_data);
-	free(sim_data);
-	return (EXIT_SUCCESS);
-}
+int		is_all_digits(const char *str);
+int		ft_atoi(const char *str, int *error);
+
+#endif

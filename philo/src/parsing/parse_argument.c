@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_argument.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 16:47:53 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 00:25:46 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/08/23 21:53:55 by enchevri          #+#    #+#             */
+/*   Updated: 2025/08/24 00:19:07 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
 #include "philo.h"
 #include "style.h"
+#include "utils.h"
 
-int	main(int argc, char **argv)
+int	check_nbr_arg(int ac)
 {
-	t_sim_data	*sim_data;
-
-	sim_data = NULL;
-	if (parse_argument(argc, argv, &sim_data))
+	if (ac != 5 && ac != 6)
 	{
-		dprintf(2, "%sC'est pt%s\n", RED, RST);
+		write(2, "Error: Invalid number of arguments\n", 36);
+		write(2, "Usage: ./philo number_of_philosophers time_to_die ", 51);
+		write(2, "time_to_eat time_to_sleep [number_of_meals]\n", 45);
 		return (EXIT_FAILURE);
 	}
-	print_sim(*sim_data);
-	free(sim_data);
+	return (EXIT_SUCCESS);
+}
+
+int	parse_argument(int ac, char **av, t_sim_data **sim_data)
+{
+	if (check_nbr_arg(ac) || init_sim_data(av, sim_data))
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
