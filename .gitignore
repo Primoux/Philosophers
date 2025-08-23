@@ -1,3 +1,4 @@
 /philo/philo
 /philo/.build
 *.json
+.vscode/
