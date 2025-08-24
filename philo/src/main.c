@@ -11,11 +11,12 @@ void	*thread_start(void *arg)
 	int j = 0;
 
 	i = *(int *)arg;
-	// printf("%sBjr je suis nouveau%s\n", BLUE, RST);
+	printf("%sBjr je suis nouveau thread[%d]%s\n", BLUE, i, RST);
+	usleep(500000);
 	while (j < count)
 	{
 		pthread_mutex_lock(&mutex);
-		printf("%sLe thread[%d] 1 a  %d %s\n", GREEN, i, a, RED);
+		printf("%sLe thread[%d] ajoute 1 a %d%s\n", GREEN, i, a, RST);
 		a++;
 		pthread_mutex_unlock(&mutex);
 		j++;
