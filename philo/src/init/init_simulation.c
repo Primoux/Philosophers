@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   init_simulation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 23:02:14 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 02:49:40 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
+/*   Updated: 2025/08/24 02:49:54 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "philo.h"
+#include "utils.h"
 
-# ifndef EXIT_SUCCESS
-#  define EXIT_SUCCESS 0
-# endif
-# ifndef EXIT_FAILURE
-#  define EXIT_FAILURE 1
-# endif
-
-# include "philo.h"
-
-int		is_all_digits(const char *str);
-int		ft_atoi(const char *str, int *error);
-void	cleanup_resources(t_sim_data *sim_data);
-
-#endif
+int	init_simulation(t_sim_data *sim_data)
+{
+	(void)sim_data;
+	return (EXIT_SUCCESS);
+}

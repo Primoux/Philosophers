@@ -42,8 +42,11 @@ endef
 COMPONENTS	:=	PARSING					\
 				DEBUG					\
 				UTILS					\
+				INIT
 
 # FILES ===============================================================================
+
+F_INIT		:= init_simulation.c		\
 
 F_PARSING	:=	parse_argument.c		\
 				init_sim_data.c			\
