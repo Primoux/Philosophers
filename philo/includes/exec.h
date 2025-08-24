@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup_resources.c                                :+:      :+:    :+:   */
+/*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 02:07:46 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 20:17:22 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/08/24 18:01:00 by enchevri          #+#    #+#             */
+/*   Updated: 2025/08/24 18:30:41 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef EXEC_H
+# define EXEC_H
+
 #include "philo.h"
 
-void	*free_tab_return_null(char **tab)
-{
-	size_t	i;
+void	*start_routine(void *arg);
+int		start_simulation(t_sim_data *sim_data);
 
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-	return (NULL);
-}
-
-void	cleanup_resources(t_sim_data *sim_data)
-{
-	if (sim_data)
-	{
-		if (sim_data->tab_philo)
-			free(sim_data->tab_philo);
-		if (sim_data->tab_fork)
-			free(sim_data->tab_fork);
-		free(sim_data);
-	}
-}
+#endif

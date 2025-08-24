@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 23:13:48 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 01:09:52 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/08/24 17:09:15 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@ int	put_in_struct(char *arg, t_sim_data *sim_data, int i)
 	int	error;
 	int	nbr;
 
-	error = 0;
 	nbr = ft_atoi(arg, &error);
 	if (error != 0)
 	{
-		write(2, "Error: numeric overflow\n", 25);
+		write(STDERR_FILENO, "Error: numeric overflow at \n", 25);
+		return (EXIT_FAILURE);
+	}
+	else if (nbr <= 0)
+	{
+		write(STDERR_FILENO, "Error: invalid argument\n", 25);
 		return (EXIT_FAILURE);
 	}
 	if (i == 1)
@@ -62,7 +66,7 @@ int	init_sim_data(char **av, t_sim_data **sim_data)
 	*sim_data = malloc(sizeof(t_sim_data));
 	if (!*sim_data)
 	{
-		write(2, "error: memory allocation failed\n", 33);
+		write(STDERR_FILENO, "error: memory allocation failed\n", 33);
 		return (EXIT_FAILURE);
 	}
 	if (fill_simulation_data(av, *sim_data))

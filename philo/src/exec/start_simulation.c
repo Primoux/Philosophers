@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup_resources.c                                :+:      :+:    :+:   */
+/*   start_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 02:07:46 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 20:17:22 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/08/24 18:05:02 by enchevri          #+#    #+#             */
+/*   Updated: 2025/08/24 18:47:35 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*free_tab_return_null(char **tab)
+int	start_simulation(t_sim_data *sim_data)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-	return (NULL);
-}
-
-void	cleanup_resources(t_sim_data *sim_data)
-{
-	if (sim_data)
+	pthread_mutex_lock(&sim_data->start_mutex);
+	sim_data->start_flag = TRUE;
+	pthread_mutex_unlock(&sim_data->start_mutex);
+	while (i < sim_data->nbr_of_philo)
 	{
-		if (sim_data->tab_philo)
-			free(sim_data->tab_philo);
-		if (sim_data->tab_fork)
-			free(sim_data->tab_fork);
-		free(sim_data);
+		pthread_join(sim_data->tab_philo[i].thread, NULL);
+		i++;
 	}
+	return (EXIT_SUCCESS);
 }
