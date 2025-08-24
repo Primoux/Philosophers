@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_simulation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 20:36:53 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/08/24 21:26:16 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "philo.h"
 #include "utils.h"
+#include <style.h>
 
 void	get_good_fork(t_sim_data *sim_data, int nbr_philo, int index)
 {
@@ -43,7 +44,10 @@ int	init_philo(t_sim_data *sim_data, int nbr_philo)
 		get_good_fork(sim_data, nbr_philo, i);
 		if (pthread_create(&sim_data->tab_philo[i].thread, NULL, &start_routine,
 				&sim_data->tab_philo[i]) != 0)
-			return (EXIT_FAILURE);
+				return (EXIT_FAILURE);
+		pthread_mutex_lock(&sim_data->print_mutex);
+		printf("%s%s[%d]\tJe vie c'est cool la vie%s\n", BOLD, GREEN, sim_data->tab_philo[i].id, RST);
+		pthread_mutex_unlock(&sim_data->print_mutex);
 		i++;
 	}
 	return (EXIT_SUCCESS);

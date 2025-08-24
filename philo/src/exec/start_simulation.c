@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   start_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:05:02 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 18:47:35 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/08/24 21:21:32 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <unistd.h>
 
 int	start_simulation(t_sim_data *sim_data)
 {
