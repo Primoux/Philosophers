@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   cleanup_resources.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 23:02:14 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 02:11:21 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/08/24 02:07:46 by enchevri          #+#    #+#             */
+/*   Updated: 2025/08/24 02:11:25 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "philo.h"
 
-# ifndef EXIT_SUCCESS
-#  define EXIT_SUCCESS 0
-# endif
-# ifndef EXIT_FAILURE
-#  define EXIT_FAILURE 1
-# endif
-
-# include "philo.h"
-
-enum	e_bool
+void	cleanup_resources(t_sim_data *sim_data)
 {
-	FALSE,
-	TRUE
-};
-
-int		is_all_digits(const char *str);
-int		ft_atoi(const char *str, int *error);
-void	cleanup_resources(t_sim_data *sim_data);
-
-#endif
+	free(sim_data);
+}

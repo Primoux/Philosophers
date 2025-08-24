@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:48:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 01:01:21 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/08/24 02:07:03 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct s_sim_data
 	t_fork			*tab_fork;
 }					t_sim_data;
 
+
+
 int					parse_argument(int ac, char **av, t_sim_data **sim_data);
 int					init_sim_data(char **av, t_sim_data **sim_data);
+
+
 #endif

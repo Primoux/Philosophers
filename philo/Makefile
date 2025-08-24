@@ -39,19 +39,22 @@ endef
 
 # COMPONENTS ==========================================================================
 
-COMPONENTS	:=	PARSING		\
-				DEBUG		\
+COMPONENTS	:=	PARSING					\
+				DEBUG					\
+				UTILS					\
 
 # FILES ===============================================================================
 
-F_PARSING	:=	parse_argument.c	\
-				init_sim_data.c		\
-				ft_atoi.c			\
-				is_all_digit.c		\
+F_PARSING	:=	parse_argument.c		\
+				init_sim_data.c			\
+				ft_atoi.c				\
+				is_all_digit.c			\
 
-F_DEBUG		:=	print_sim.c			\
+F_DEBUG		:=	print_sim.c				\
 
-F_MAIN		:=	main.c				\
+F_UTILS		:=	cleanup_resources.c	\
+
+F_MAIN		:=	main.c					\
 
 # VARS GENERATION =====================================================================
 $(foreach comp,$(COMPONENTS),$(eval $(call generate_var_sources_dir,$(comp))))
