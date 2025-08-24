@@ -21,6 +21,8 @@ void	*thread_start(void *arg)
 		pthread_mutex_unlock(&mutex);
 		j++;
 	}
+	printf("%sFINITO[%d]%s\n", RED, i, RST);
+
 	return (NULL);
 }
 
