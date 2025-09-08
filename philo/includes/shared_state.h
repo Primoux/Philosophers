@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_routine.c                                    :+:      :+:    :+:   */
+/*   shared_state.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 17:56:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 18:13:40 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/09/08 16:23:03 by enchevri          #+#    #+#             */
+/*   Updated: 2025/09/08 18:03:00 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "shared_state.h"
-#include "style.h"
-#include <unistd.h>
+#ifndef SHARED_STATE
+# define SHARED_STATE
 
-void	*start_routine(void *arg)
-{
-	t_philo	*philo;
+# include "philo.h"
 
-	philo = (t_philo *)arg;
-	mutex_lock(&philo->sim_data->start_mutex);
-	mutex_unlock(&philo->sim_data->start_mutex);
-	safe_printf(&philo->sim_data->print_mutex, "C'est cool la vie", 1);
-	return (NULL);
-}
+void		mutex_lock(t_mutex *mutex);
+void		mutex_unlock(t_mutex *mutex);
+__uint32_t	mutex_get_data(t_mutex *mutex);
+void		safe_printf(t_mutex *mutex, char *str, int mode);
+#endif

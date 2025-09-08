@@ -6,12 +6,13 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 16:01:03 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/08 18:07:51 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "philo.h"
+#include "shared_state.h"
 #include "utils.h"
 #include <style.h>
 
@@ -39,34 +40,31 @@ int	init_philo(t_sim_data *sim_data, int nbr_philo)
 		return (EXIT_FAILURE);
 	while (i < nbr_philo)
 	{
-		sim_data->tab_philo[i].id = i;
+		sim_data->tab_philo[i].thread.id = i;
 		sim_data->tab_philo[i].sim_data = sim_data;
 		get_good_fork(sim_data, nbr_philo, i);
-		if (pthread_create(&sim_data->tab_philo[i].thread, NULL, &start_routine,
-				&sim_data->tab_philo[i]) != 0)
+		if (pthread_create(&sim_data->tab_philo[i].thread.thread, NULL,
+				&start_routine, &sim_data->tab_philo[i]) != 0)
 			return (EXIT_FAILURE);
-		pthread_mutex_lock(&sim_data->print_mutex);
-		printf("%s%s[%d]\tJe vie mais je suis bloqué dans une simulation%s\n",
-			BOLD, GREEN, sim_data->tab_philo[i].id, RST);
-		pthread_mutex_unlock(&sim_data->print_mutex);
+		safe_printf(&sim_data->print_mutex, "Bonjour", 0);
 		i++;
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	init_fork(t_sim_data *sim_data, int nbr_philo)
+int	init_and_put_fork(t_sim_data *sim_data, int nbr_philo)
 {
 	int	i;
 
 	i = 0;
-	sim_data->tab_fork = malloc(sizeof(t_fork) * nbr_philo + 1);
+	sim_data->tab_fork = malloc(sizeof(t_mutex) * nbr_philo + 1);
 	if (!sim_data->tab_fork)
 		return (EXIT_FAILURE);
 	while (i < nbr_philo)
 	{
 		sim_data->tab_fork[i].id = i;
-		sim_data->tab_fork[i].is_taken = FALSE;
-		pthread_mutex_init(&sim_data->tab_fork[i].is_taken_mutex, NULL);
+		sim_data->tab_fork[i].data = 0;
+		pthread_mutex_init(&sim_data->tab_fork[i].mutex, NULL);
 		i++;
 	}
 	return (EXIT_SUCCESS);
@@ -74,10 +72,10 @@ int	init_fork(t_sim_data *sim_data, int nbr_philo)
 
 int	init_simulation(t_sim_data *sim_data)
 {
-	pthread_mutex_init(&sim_data->start_mutex, NULL);
-	pthread_mutex_init(&sim_data->print_mutex, NULL);
-	pthread_mutex_lock(&sim_data->start_mutex);
-	if (init_fork(sim_data, sim_data->rules.nbr_of_philo))
+	pthread_mutex_init(&sim_data->start_mutex.mutex, NULL);
+	pthread_mutex_init(&sim_data->print_mutex.mutex, NULL);
+	pthread_mutex_lock(&sim_data->start_mutex.mutex);
+	if (init_and_put_fork(sim_data, sim_data->rules.nbr_of_philo))
 		return (EXIT_FAILURE);
 	if (init_philo(sim_data, sim_data->rules.nbr_of_philo))
 		return (EXIT_FAILURE);

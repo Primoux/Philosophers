@@ -44,6 +44,7 @@ COMPONENTS	:=	PARSING					\
 				UTILS					\
 				INIT					\
 				EXEC					\
+				SHARED_STATE			\
 
 # FILES ===============================================================================
 
@@ -59,7 +60,9 @@ F_PARSING	:=	parse_argument.c		\
 
 F_DEBUG		:=	print_sim.c				\
 
-F_UTILS		:=	cleanup_resources.c	\
+F_UTILS		:=	cleanup_resources.c		\
+
+F_SHARED_STATE := shared_state.c		\
 
 F_MAIN		:=	main.c					\
 
