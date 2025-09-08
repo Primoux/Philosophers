@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 18:07:51 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/08 18:18:06 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	init_philo(t_sim_data *sim_data, int nbr_philo)
 		if (pthread_create(&sim_data->tab_philo[i].thread.thread, NULL,
 				&start_routine, &sim_data->tab_philo[i]) != 0)
 			return (EXIT_FAILURE);
-		safe_printf(&sim_data->print_mutex, "Bonjour", 0);
 		i++;
 	}
 	return (EXIT_SUCCESS);

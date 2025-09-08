@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:48:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 17:07:03 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/08 20:00:36 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_mutex
 
 typedef struct s_thread
 {
-	int						id;
+	size_t						id;
 	pthread_t				thread;
 }							t_thread;
 
@@ -61,5 +61,7 @@ typedef struct s_sim_data
 int							parse_argument(int ac, char **av, t_rules *rules);
 int							init_sim_data(char **av, t_rules *rules);
 int							init_simulation(t_sim_data *sim_data);
+void						get_time_to_msec(__uint32_t *time);
+__uint32_t					get_time_interval_in_msec(t_mutex *mutex);
 
 #endif

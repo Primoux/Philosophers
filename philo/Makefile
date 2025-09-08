@@ -50,6 +50,7 @@ COMPONENTS	:=	PARSING					\
 
 F_EXEC		:=	start_routine.c			\
 				start_simulation.c		\
+				time.c					\
 
 F_INIT		:=	init_simulation.c		\
 

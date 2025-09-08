@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:05:02 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 18:09:36 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/08 19:11:47 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ int	start_simulation(t_sim_data *sim_data)
 {
 	int	i;
 
-	i = 0;
+	get_time_to_msec(&sim_data->start_mutex.data);
 	mutex_unlock(&sim_data->start_mutex);
+	i = 0;
 	while (i < sim_data->rules.nbr_of_philo)
 	{
 		pthread_join(sim_data->tab_philo[i].thread.thread, NULL);
-		i++;
+		++i;
 	}
 	return (EXIT_SUCCESS);
 }
