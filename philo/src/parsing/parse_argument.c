@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:53:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 17:06:13 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/04 03:23:15 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	check_nbr_arg(int ac)
 	return (EXIT_SUCCESS);
 }
 
-int	parse_argument(int ac, char **av, t_sim_data **sim_data)
+int	parse_argument(int ac, char **av, t_rules *rules)
 {
-	if (check_nbr_arg(ac) || init_sim_data(av, sim_data))
+	if (check_nbr_arg(ac) || init_sim_data(av, rules))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

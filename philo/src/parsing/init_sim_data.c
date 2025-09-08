@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 23:13:48 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 17:09:15 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/04 03:23:11 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils.h"
 #include <unistd.h>
 
-int	put_in_struct(char *arg, t_sim_data *sim_data, int i)
+int	put_in_struct(char *arg, t_rules *rules, int i)
 {
 	int	error;
 	int	nbr;
@@ -32,47 +32,38 @@ int	put_in_struct(char *arg, t_sim_data *sim_data, int i)
 		return (EXIT_FAILURE);
 	}
 	if (i == 1)
-		sim_data->nbr_of_philo = nbr;
+		rules->nbr_of_philo = nbr;
 	else if (i == 2)
-		sim_data->time_to_die = nbr;
+		rules->time_to_die = nbr;
 	else if (i == 3)
-		sim_data->time_to_eat = nbr;
+		rules->time_to_eat = nbr;
 	else if (i == 4)
-		sim_data->time_to_sleep = nbr;
+		rules->time_to_sleep = nbr;
 	else if (i == 5)
-		sim_data->nbr_of_meal = nbr;
+		rules->nbr_of_meal = nbr;
 	return (EXIT_SUCCESS);
 }
 
-int	fill_simulation_data(char **av, t_sim_data *sim_data)
+int	fill_simulation_data(char **av, t_rules *rules)
 {
 	int	i;
 
 	i = 1;
-	sim_data->nbr_of_meal = -1;
+	rules->nbr_of_meal = -1;
 	while (av[i])
 	{
 		if (is_all_digits(av[i]))
 			return (EXIT_FAILURE);
-		if (put_in_struct(av[i], sim_data, i))
+		if (put_in_struct(av[i], rules, i))
 			return (EXIT_FAILURE);
 		++i;
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	init_sim_data(char **av, t_sim_data **sim_data)
+int	init_sim_data(char **av, t_rules *rules)
 {
-	*sim_data = malloc(sizeof(t_sim_data));
-	if (!*sim_data)
-	{
-		write(STDERR_FILENO, "error: memory allocation failed\n", 33);
+	if (fill_simulation_data(av, rules))
 		return (EXIT_FAILURE);
-	}
-	if (fill_simulation_data(av, *sim_data))
-	{
-		free(*sim_data);
-		return (EXIT_FAILURE);
-	}
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 00:22:30 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 01:15:26 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/04 03:24:40 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	print_sim(t_sim_data sim_data)
 
 	color = GREEN;
 	format = BOLD;
-	printf("%s%sNbr_of_philo = '%d'%s\n", format, color, sim_data.nbr_of_philo,
+	printf("%s%sNbr_of_philo = '%d'%s\n", format, color, sim_data.rules.nbr_of_philo,
 		RST);
-	printf("%s%sTime_to_die = '%d'%s\n", format, color, sim_data.time_to_die,
+	printf("%s%sTime_to_die = '%d'%s\n", format, color, sim_data.rules.time_to_die,
 		RST);
-	printf("%s%sTime_to_eat = '%d'%s\n", format, color, sim_data.time_to_eat,
+	printf("%s%sTime_to_eat = '%d'%s\n", format, color, sim_data.rules.time_to_eat,
 		RST);
 	printf("%s%sTime_to_sleep = '%d'%s\n", format, color,
-		sim_data.time_to_sleep, RST);
-	if (sim_data.nbr_of_meal == -1)
+		sim_data.rules.time_to_sleep, RST);
+	if (sim_data.rules.nbr_of_meal == -1)
 		color = RED;
-	printf("%s%sNbr_of_meal = '%d'%s\n", format, color, sim_data.nbr_of_meal,
+	printf("%s%sNbr_of_meal = '%d'%s\n", format, color, sim_data.rules.nbr_of_meal,
 		RST);
 }

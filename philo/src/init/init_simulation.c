@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_simulation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 21:31:44 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/08 16:01:03 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	init_philo(t_sim_data *sim_data, int nbr_philo)
 				&sim_data->tab_philo[i]) != 0)
 			return (EXIT_FAILURE);
 		pthread_mutex_lock(&sim_data->print_mutex);
-		printf("%s%s[%d]\tJe vie c'est cool la vie%s\n",
+		printf("%s%s[%d]\tJe vie mais je suis bloqué dans une simulation%s\n",
 			BOLD, GREEN, sim_data->tab_philo[i].id, RST);
 		pthread_mutex_unlock(&sim_data->print_mutex);
 		i++;
@@ -76,10 +76,10 @@ int	init_simulation(t_sim_data *sim_data)
 {
 	pthread_mutex_init(&sim_data->start_mutex, NULL);
 	pthread_mutex_init(&sim_data->print_mutex, NULL);
-	sim_data->start_flag = FALSE;
-	if (init_fork(sim_data, sim_data->nbr_of_philo))
+	pthread_mutex_lock(&sim_data->start_mutex);
+	if (init_fork(sim_data, sim_data->rules.nbr_of_philo))
 		return (EXIT_FAILURE);
-	if (init_philo(sim_data, sim_data->nbr_of_philo))
+	if (init_philo(sim_data, sim_data->rules.nbr_of_philo))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

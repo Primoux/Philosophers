@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 23:17:28 by enchevri          #+#    #+#             */
-/*   Updated: 2025/08/24 17:05:48 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/04 03:59:37 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	is_all_digits(const char *str)
 	{
 		if (str[i] > '9' || str[i] < '0')
 		{
-			write(STDERR_FILENO, "error: invalid character in argument\n", 38);
+			write(STDERR_FILENO, __FILE__ " Error: invalid character in argument\n", 38);
 			return (EXIT_FAILURE);
 		}
 		++i;
