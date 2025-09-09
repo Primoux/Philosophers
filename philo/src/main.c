@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:47:53 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/04 03:52:02 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/09 02:45:22 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	memset(sim_data, 0, sizeof(t_sim_data));
 	if (parse_argument(argc, argv, &sim_data->rules))
 		return (EXIT_FAILURE);
-	print_sim(*sim_data);
+	// print_sim(*sim_data);
 	if (init_simulation(sim_data) || start_simulation(sim_data))
 	{
 		cleanup_resources(sim_data);

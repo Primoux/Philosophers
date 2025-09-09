@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:05:02 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 19:11:47 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/09 01:28:45 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	start_simulation(t_sim_data *sim_data)
 {
-	int	i;
+	__uint64_t	i;
 
 	get_time_to_msec(&sim_data->start_mutex.data);
 	mutex_unlock(&sim_data->start_mutex);

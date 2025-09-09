@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shared_state.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:27:34 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 20:07:05 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/09 02:25:12 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	mutex_unlock(t_mutex *mutex)
 	pthread_mutex_unlock(&mutex->mutex);
 }
 
-__uint32_t	mutex_get_data(t_mutex *mutex)
+__int32_t	mutex_get_data(t_mutex *mutex)
 {
-	__uint32_t	data;
+	__int32_t	data;
 
 	data = 0;
 	mutex_lock(mutex);
@@ -33,7 +33,7 @@ __uint32_t	mutex_get_data(t_mutex *mutex)
 	mutex_unlock(mutex);
 	return (data);
 }
-void	mutex_set_data(t_mutex *mutex, __uint32_t data)
+void	mutex_set_data(t_mutex *mutex, __int32_t data)
 {
 	mutex_lock(mutex);
 	mutex->data = data;
@@ -42,11 +42,12 @@ void	mutex_set_data(t_mutex *mutex, __uint32_t data)
 
 void	safe_printf(t_philo *philo, char *str, int mode)
 {
-	const char	*color[5] = {RED, GREEN, YELLOW, MAGENTA, CYAN};
+	const char	*color[6] = {BOLD RED, BOLD GREEN, BOLD YELLOW, BOLD MAGENTA, BOLD CYAN, ""};
+	const char	*rst[6] = {RST, RST, RST, RST, RST, ""};
 
 	mutex_lock(&philo->sim_data->print_mutex);
-	printf("%s[%d]\t%zu%s%s%s\n", BOLD,
+	printf("%d %zu %s%s%s\n",
 		get_time_interval_in_msec(&philo->sim_data->start_mutex),
-		philo->thread.id, color[mode], str, RST);
+		philo->thread.id, color[mode], str, rst[mode]);
 	mutex_unlock(&philo->sim_data->print_mutex);
 }

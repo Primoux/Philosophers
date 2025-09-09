@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:48:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 20:00:36 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/09 03:01:27 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ typedef struct s_mutex
 
 typedef struct s_thread
 {
-	size_t						id;
+	size_t					id;
+	t_mutex					nbr_meal;
+	t_mutex					last_meal;
 	pthread_t				thread;
 }							t_thread;
 
@@ -42,10 +44,10 @@ typedef struct s_philo
 
 typedef struct s_rules
 {
-	__int32_t				nbr_of_philo;
-	__int32_t				time_to_die;
-	__int32_t				time_to_eat;
-	__int32_t				time_to_sleep;
+	__uint32_t				nbr_of_philo;
+	__uint32_t				time_to_die;
+	__uint32_t				time_to_eat;
+	__uint32_t				time_to_sleep;
 	__int32_t				nbr_of_meal;
 }							t_rules;
 
@@ -56,6 +58,8 @@ typedef struct s_sim_data
 	t_rules					rules;
 	t_philo					*tab_philo;
 	t_mutex					*tab_fork;
+	t_mutex					death_mutex;
+	t_mutex					finished_meal_mutex;
 }							t_sim_data;
 
 int							parse_argument(int ac, char **av, t_rules *rules);
