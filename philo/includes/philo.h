@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:48:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/09 03:01:27 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/10 10:21:26 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 # define PHILO_H
 
 # include <pthread.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 
 typedef struct s_sim_data	t_sim_data;
+
+enum						state
+{
+	FREE,
+	TAKEN,
+};
 
 typedef struct s_mutex
 {
@@ -67,5 +74,7 @@ int							init_sim_data(char **av, t_rules *rules);
 int							init_simulation(t_sim_data *sim_data);
 void						get_time_to_msec(__uint32_t *time);
 __uint32_t					get_time_interval_in_msec(t_mutex *mutex);
+__int32_t					get_time_min(__int32_t time1, __int32_t time2);
+
 
 #endif

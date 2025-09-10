@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 18:59:52 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 19:51:05 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/10 06:28:34 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,19 @@ __uint32_t	get_time_interval_in_msec(t_mutex *mutex)
 	__uint32_t		actual_time;
 	__uint32_t		sec;
 	__uint32_t		usec;
+
 	start_time = mutex_get_data(mutex);
 	gettimeofday(&tv, NULL);
 	sec = tv.tv_sec * 1000;
 	usec = tv.tv_usec / 1000;
 	actual_time = sec + usec;
 	return (actual_time - start_time);
+}
+
+__int32_t	get_time_min(__int32_t time1, __int32_t time2)
+{
+	if (time1 >= time2)
+		return (time2);
+	else
+		return (time1);
 }
