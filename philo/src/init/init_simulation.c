@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/10 15:22:33 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/11 11:25:21 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,15 @@ int	init_philo(t_sim_data *sim_data, int nbr_philo)
 		return (EXIT_FAILURE);
 	while (i < nbr_philo)
 	{
-		pthread_mutex_init(&sim_data->tab_philo[i].thread.last_meal.mutex,
-			NULL);
+		sim_data->rules.nbr_of_philo_initialized = i;
+		if (pthread_mutex_init(&sim_data->tab_philo[i].thread.last_meal.mutex,
+				NULL))
+		{
+			sim_data->tab_philo[i].thread.last_meal.initialize = false;
+			return (1);
+		}
+		sim_data->tab_philo[i].thread.last_meal.initialize = true;
+		sim_data->tab_philo[i].thread.last_meal.data = 0;
 		sim_data->tab_philo[i].thread.nbr_meal = 0;
 		sim_data->tab_philo[i].thread.id = i + 1;
 		sim_data->tab_philo[i].sim_data = sim_data;
@@ -72,12 +79,24 @@ int	init_and_put_fork(t_sim_data *sim_data, int nbr_philo)
 	return (EXIT_SUCCESS);
 }
 
+int	create_mutex(t_mutex *mutex)
+{
+	if (pthread_mutex_init(&mutex->mutex, NULL))
+	{
+		mutex->initialize = false;
+		return (1);
+	}
+	mutex->initialize = true;
+	return (0);
+}
+
 int	init_simulation(t_sim_data *sim_data)
 {
-	pthread_mutex_init(&sim_data->start_mutex.mutex, NULL);
-	pthread_mutex_init(&sim_data->death_mutex.mutex, NULL);
-	pthread_mutex_init(&sim_data->print_mutex.mutex, NULL);
-	pthread_mutex_init(&sim_data->finished_meal_mutex.mutex, NULL);
+	if (create_mutex(&sim_data->start_mutex)
+		|| create_mutex(&sim_data->death_mutex)
+		|| create_mutex(&sim_data->print_mutex)
+		|| create_mutex(&sim_data->finished_meal_mutex))
+		return (EXIT_FAILURE);
 	sim_data->finished_meal_mutex.data = 0;
 	pthread_mutex_lock(&sim_data->start_mutex.mutex);
 	if (init_and_put_fork(sim_data, sim_data->rules.nbr_of_philo))

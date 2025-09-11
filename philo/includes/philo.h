@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:48:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/10 15:18:37 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/11 11:09:47 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ enum						state
 
 typedef struct s_mutex
 {
-	int						id;
+	bool					initialize;
+	__uint32_t				id;
 	pthread_mutex_t			mutex;
 	__uint32_t				data;
 }							t_mutex;
@@ -56,6 +57,7 @@ typedef struct s_rules
 	__uint32_t				time_to_eat;
 	__uint32_t				time_to_sleep;
 	__int32_t				nbr_of_meal;
+	__int32_t				nbr_of_philo_initialized;
 }							t_rules;
 
 typedef struct s_sim_data

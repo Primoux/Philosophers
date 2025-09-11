@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:27:34 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 07:23:57 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/11 09:02:21 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ __uint32_t	mutex_get_data(t_mutex *mutex)
 	pthread_mutex_unlock(&mutex->mutex);
 	return (data);
 }
-void	mutex_set_data(t_mutex *mutex, __int32_t data)
+void	mutex_set_data(t_mutex *mutex, __uint32_t data)
 {
 	pthread_mutex_lock(&mutex->mutex);
 	mutex->data = data;
