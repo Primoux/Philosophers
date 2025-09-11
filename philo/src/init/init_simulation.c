@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/10 03:21:37 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/10 15:22:33 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	init_philo(t_sim_data *sim_data, int nbr_philo)
 		return (EXIT_FAILURE);
 	while (i < nbr_philo)
 	{
-		pthread_mutex_init(&sim_data->tab_philo[i].thread.nbr_meal.mutex, NULL);
-		pthread_mutex_init(&sim_data->tab_philo[i].thread.last_meal.mutex, NULL);
-		sim_data->tab_philo[i].thread.nbr_meal.data = 0;
+		pthread_mutex_init(&sim_data->tab_philo[i].thread.last_meal.mutex,
+			NULL);
+		sim_data->tab_philo[i].thread.nbr_meal = 0;
 		sim_data->tab_philo[i].thread.id = i + 1;
 		sim_data->tab_philo[i].sim_data = sim_data;
 		get_good_fork(sim_data, nbr_philo, i);
