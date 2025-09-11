@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 18:59:52 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/10 15:05:25 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/11 07:11:09 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ __uint32_t	ft_usleep(t_philo *philo, __uint32_t time)
 			return (1);
 		}
 		pthread_mutex_unlock(&philo->sim_data->death_mutex.mutex);
+		if (finished_meal(philo))
+			return (1);
 		usleep(150);
 	}
 	return (0);

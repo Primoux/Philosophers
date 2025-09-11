@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 17:56:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 04:44:56 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/11 07:28:14 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	catch_fork(t_philo *philo, t_mutex *fork)
 	while (1)
 	{
 		if (mutex_get_data(&philo->sim_data->death_mutex)
-			|| check_own_death(philo))
+			|| check_own_death(philo) || finished_meal(philo))
 			return (1);
 		if (mutex_compare_and_swap(fork, TAKEN) == 0)
 		{
@@ -66,6 +66,18 @@ int	catch_fork(t_philo *philo, t_mutex *fork)
 		usleep(100);
 	}
 	return (0);
+}
+
+void	update_finished_meal(t_philo *philo)
+{
+	if (philo->sim_data->rules.nbr_of_meal != -1)
+	{
+		if (philo->thread.nbr_meal == philo->sim_data->rules.nbr_of_meal)
+		{
+			mutex_set_data(&philo->sim_data->finished_meal_mutex,
+				mutex_get_data(&philo->sim_data->finished_meal_mutex) + 1);
+		}
+	}
 }
 
 int	eating(t_philo *philo)
@@ -82,6 +94,7 @@ int	eating(t_philo *philo)
 	time = get_time_interval_in_msec(&philo->sim_data->start_mutex);
 	if (safe_printf(philo, "is eating"))
 		return (1);
+	update_finished_meal(philo);
 	mutex_set_data(&philo->thread.last_meal, (__int32_t)time);
 	if (ft_usleep(philo, philo->sim_data->rules.time_to_eat * 1000))
 	{
@@ -114,19 +127,6 @@ void	*start_routine(void *arg)
 			return (NULL);
 		if (thinking(philo))
 			return (NULL);
-		if (philo->sim_data->rules.nbr_of_meal != -1)
-		{
-			if (philo->thread.nbr_meal >= philo->sim_data->rules.nbr_of_meal)
-			{
-				if (threshold == false)
-				{
-					mutex_set_data(&philo->sim_data->finished_meal_mutex,
-						mutex_get_data(&philo->sim_data->finished_meal_mutex)
-						+ 1);
-					threshold = true;
-				}
-			}
-		}
 	}
 	return (NULL);
 }

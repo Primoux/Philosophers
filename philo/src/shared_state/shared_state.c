@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:27:34 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 04:35:50 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/11 07:23:57 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_own_death(t_philo *philo)
 
 int	finished_meal(t_philo *philo)
 {
-	if (mutex_get_data(&philo->sim_data->finished_meal_mutex) == philo->sim_data->rules.nbr_of_philo)
+	if (mutex_get_data(&philo->sim_data->finished_meal_mutex) >= philo->sim_data->rules.nbr_of_philo)
 		return (1);
 	return (0);
 }
