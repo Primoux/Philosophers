@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:48:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 11:09:47 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/13 03:00:23 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ enum						state
 
 typedef struct s_mutex
 {
-	bool					initialize;
 	__uint32_t				id;
 	pthread_mutex_t			mutex;
 	__uint32_t				data;
