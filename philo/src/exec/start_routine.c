@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 17:56:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 10:43:40 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/14 15:31:49 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,7 @@ int	eating(t_philo *philo)
 void	*start_routine(void *arg)
 {
 	t_philo	*philo;
-	bool	threshold;
 
-	threshold = false;
 	philo = (t_philo *)arg;
 	if (thinking(philo))
 		return (NULL);
