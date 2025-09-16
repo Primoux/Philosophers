@@ -104,7 +104,8 @@ fclean:
 	rm -rf $(DIR_BUILD)
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) -j all
 
 .DEFAULT_GOAL = all
 

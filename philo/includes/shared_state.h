@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/08 16:23:03 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 09:02:27 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/09/16 09:54:47 by enchevri          #+#    #+#             */
+/*   Updated: 2025/09/16 09:55:23 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHARED_STATE
-# define SHARED_STATE
+#ifndef SHARED_STATE_H
+# define SHARED_STATE_H
 
 # include "philo.h"
 

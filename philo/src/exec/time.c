@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 18:59:52 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 07:11:09 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/16 10:13:27 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,8 @@ __int32_t	get_min(__int32_t time1, __int32_t time2)
 		return (time1);
 }
 
-__uint32_t	ft_usleep(t_philo *philo, __uint32_t time)
+__uint32_t	ft_usleep(t_philo *philo, __uint32_t time, __uint32_t start_time)
 {
-	__uint32_t	start_time;
-
-	start_time = get_time_to_msec();
 	while (get_time_to_msec() - start_time < time / 1000)
 	{
 		if (mutex_get_data(&philo->sim_data->death_mutex))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:48:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/13 03:00:23 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/16 10:08:56 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef struct s_sim_data	t_sim_data;
 
-enum						state
+enum						e_state
 {
 	FREE,
 	TAKEN,
@@ -76,6 +76,6 @@ int							init_simulation(t_sim_data *sim_data);
 __uint32_t					get_time_to_msec(void);
 __uint32_t					get_time_interval_in_msec(t_mutex *mutex);
 __int32_t					get_min(__int32_t time1, __int32_t time2);
-__uint32_t					ft_usleep(t_philo *philo, __uint32_t time);
+__uint32_t					ft_usleep(t_philo *philo, __uint32_t time, __uint32_t start_time);
 
 #endif

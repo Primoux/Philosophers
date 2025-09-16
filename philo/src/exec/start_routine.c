@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 17:56:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/14 15:21:50 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/16 10:09:46 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	sleeping(t_philo *philo)
 	}
 	remaining = (last_meal + philo->sim_data->rules.time_to_die) - now;
 	sleep_time_ms = philo->sim_data->rules.time_to_sleep;
-	if (ft_usleep(philo, get_min(remaining, sleep_time_ms) * 1000))
+	if (ft_usleep(philo, get_min(remaining, sleep_time_ms) * 1000, get_time_to_msec()))
 		return (1);
 	return (0);
 }
@@ -94,7 +94,7 @@ int	eating(t_philo *philo)
 		return (1);
 	update_finished_meal(philo);
 	mutex_set_data(&philo->thread.last_meal, time);
-	if (ft_usleep(philo, philo->sim_data->rules.time_to_eat * 1000))
+	if (ft_usleep(philo, philo->sim_data->rules.time_to_eat * 1000, get_time_to_msec()))
 	{
 		mutex_set_data(philo->left_fork, FREE);
 		mutex_set_data(philo->right_fork, FREE);
@@ -113,7 +113,7 @@ void	*start_routine(void *arg)
 	if (thinking(philo))
 		return (NULL);
 	if (philo->thread.id % 2 == 0)
-		if (ft_usleep(philo, philo->sim_data->rules.time_to_eat / 2 * 1000))
+		if (ft_usleep(philo, philo->sim_data->rules.time_to_eat / 2 * 1000, get_time_to_msec()))
 			return (NULL);
 	while (1)
 	{
