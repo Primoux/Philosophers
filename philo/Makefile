@@ -16,7 +16,7 @@ INC_FLAGS	:= -I $(DIR_INC)
 
 COMP 		:= $(CC) $(C_FLAGS) $(INC_FLAGS)
 
-ANTI_RELINK	:= Makefile $(DIR_INC) $(DIR_INC_LIB)
+ANTI_RELINK	:= $(DIR_INC) $(DIR_INC_LIB)
 
 # FUNCTIONS ===========================================================================
 define generate_var_sources_dir
@@ -104,7 +104,8 @@ fclean:
 	rm -rf $(DIR_BUILD)
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) -j all
 
 .DEFAULT_GOAL = all
 
