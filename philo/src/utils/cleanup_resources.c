@@ -34,10 +34,7 @@ void	clean_all_mutex(t_sim_data *sim_data)
 	i = 0;
 	while (i < sim_data->rules.nbr_of_philo_initialized)
 	{
-		if (&sim_data->tab_philo[i])
-		{
-			pthread_mutex_destroy(&sim_data->tab_philo[i].thread.last_meal);
-		}
+		pthread_mutex_destroy(&sim_data->tab_philo[i].thread.last_meal.mutex);
 		++i;
 	}
 }
