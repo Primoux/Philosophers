@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:47:53 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 05:38:22 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/16 09:55:51 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv)
 	memset(sim_data, 0, sizeof(t_sim_data));
 	if (parse_argument(argc, argv, &sim_data->rules))
 		return (EXIT_FAILURE);
-	// print_sim(*sim_data);
 	if (init_simulation(sim_data) || start_simulation(sim_data))
 	{
 		cleanup_resources(sim_data);

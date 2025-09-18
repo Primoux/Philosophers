@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:48:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 11:09:47 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/17 15:00:35 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef struct s_sim_data	t_sim_data;
 
-enum						state
+enum						e_state
 {
 	FREE,
 	TAKEN,
@@ -28,7 +28,6 @@ enum						state
 
 typedef struct s_mutex
 {
-	bool					initialize;
 	__uint32_t				id;
 	pthread_mutex_t			mutex;
 	__uint32_t				data;
@@ -74,9 +73,11 @@ typedef struct s_sim_data
 int							parse_argument(int ac, char **av, t_rules *rules);
 int							init_sim_data(char **av, t_rules *rules);
 int							init_simulation(t_sim_data *sim_data);
+int							init_philo(t_sim_data *sim_data, int nbr_philo);
 __uint32_t					get_time_to_msec(void);
 __uint32_t					get_time_interval_in_msec(t_mutex *mutex);
 __int32_t					get_min(__int32_t time1, __int32_t time2);
-__uint32_t					ft_usleep(t_philo *philo, __uint32_t time);
+__uint32_t					ft_usleep(t_philo *philo, __uint32_t time,
+								__uint32_t start_time);
 
 #endif

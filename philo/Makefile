@@ -48,24 +48,26 @@ COMPONENTS	:=	PARSING					\
 
 # FILES ===============================================================================
 
-F_EXEC		:=	start_routine.c			\
-				start_simulation.c		\
-				time.c					\
+F_EXEC			:=	start_routine.c			\
+					routine.c				\
+					start_simulation.c		\
+					time.c					\
 
-F_INIT		:=	init_simulation.c		\
+F_INIT			:=	init_simulation.c		\
+					init_philo.c			\
 
-F_PARSING	:=	parse_argument.c		\
-				init_sim_data.c			\
-				ft_atoi.c				\
-				is_all_digit.c			\
+F_PARSING		:=	parse_argument.c		\
+					init_sim_data.c			\
+					ft_atoi.c				\
+					is_all_digit.c			\
 
-F_DEBUG		:=	print_sim.c				\
+F_DEBUG			:=	print_sim.c				\
 
-F_UTILS		:=	cleanup_resources.c		\
+F_UTILS			:=	cleanup_resources.c		\
 
-F_SHARED_STATE := shared_state.c		\
+F_SHARED_STATE	:= shared_state.c			\
 
-F_MAIN		:=	main.c					\
+F_MAIN			:=	main.c					\
 
 # VARS GENERATION =====================================================================
 $(foreach comp,$(COMPONENTS),$(eval $(call generate_var_sources_dir,$(comp))))
@@ -112,6 +114,5 @@ re: fclean
 # debug -------------------------------------------------------------------------------
 print-%:
 	@echo $($(patsubst print-%,%,$@))
-
 
 .PHONY: all lib clean fclean re print-%

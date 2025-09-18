@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:27:34 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/11 09:02:21 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/16 10:25:47 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ __uint32_t	mutex_get_data(t_mutex *mutex)
 	pthread_mutex_unlock(&mutex->mutex);
 	return (data);
 }
+
 void	mutex_set_data(t_mutex *mutex, __uint32_t data)
 {
 	pthread_mutex_lock(&mutex->mutex);
@@ -33,7 +34,8 @@ int	check_own_death(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->sim_data->death_mutex.mutex);
 	if (get_time_interval_in_msec(&philo->sim_data->start_mutex)
-		- mutex_get_data(&philo->thread.last_meal) >= philo->sim_data->rules.time_to_die)
+		- mutex_get_data(&philo->thread.last_meal)
+		>= philo->sim_data->rules.time_to_die)
 	{
 		philo->sim_data->death_mutex.data = 1;
 		pthread_mutex_unlock(&philo->sim_data->death_mutex.mutex);
