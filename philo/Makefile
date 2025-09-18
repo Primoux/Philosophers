@@ -6,7 +6,6 @@ DIR_SRC		:= src/
 DIR_INC 	:= includes/
 DIR_BUILD	:= .build/
 
-
 # FLAGS & COMPILATOR SETTINGS =========================================================
 CC 			:= cc
 DEPS_FLAGS	:= -MMD -MP
