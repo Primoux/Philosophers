@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 23:13:48 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/04 03:23:11 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/25 20:16:52 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,8 @@
 #include "utils.h"
 #include <unistd.h>
 
-int	put_in_struct(char *arg, t_rules *rules, int i)
+static void	put_in_tab(int i, int nbr, t_rules *rules)
 {
-	int	error;
-	int	nbr;
-
-	nbr = ft_atoi(arg, &error);
-	if (error != 0)
-	{
-		write(STDERR_FILENO, "Error: numeric overflow at \n", 25);
-		return (EXIT_FAILURE);
-	}
-	else if (nbr <= 0)
-	{
-		write(STDERR_FILENO, "Error: invalid argument\n", 25);
-		return (EXIT_FAILURE);
-	}
 	if (i == 1)
 		rules->nbr_of_philo = nbr;
 	else if (i == 2)
@@ -41,10 +27,31 @@ int	put_in_struct(char *arg, t_rules *rules, int i)
 		rules->time_to_sleep = nbr;
 	else if (i == 5)
 		rules->nbr_of_meal = nbr;
+}
+
+static int	check_arg(char *arg, t_rules *rules, int i)
+{
+	int	error;
+	int	nbr;
+
+	nbr = ft_atoi(arg, &error);
+	if (error != 0)
+	{
+		if (write(STDERR_FILENO, "Error: numeric overflow\n", 25) == -1)
+			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
+	}
+	else if (nbr <= 0)
+	{
+		if (write(STDERR_FILENO, "Error: invalid argument\n", 25) == -1)
+			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
+	}
+	put_in_tab(i, nbr, rules);
 	return (EXIT_SUCCESS);
 }
 
-int	fill_simulation_data(char **av, t_rules *rules)
+static int	fill_simulation_data(char **av, t_rules *rules)
 {
 	int	i;
 
@@ -54,7 +61,7 @@ int	fill_simulation_data(char **av, t_rules *rules)
 	{
 		if (is_all_digits(av[i]))
 			return (EXIT_FAILURE);
-		if (put_in_struct(av[i], rules, i))
+		if (check_arg(av[i], rules, i))
 			return (EXIT_FAILURE);
 		++i;
 	}

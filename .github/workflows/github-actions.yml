@@ -2,7 +2,7 @@ name: Philosopher CI
 run-name: Norminette + Compilation 🚀
 on:
   push:
-    branches: [ main ]
+    branches: [ main , test]
   pull_request:
     branches: [ main ]
 
