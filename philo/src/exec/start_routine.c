@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 17:56:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/17 17:31:03 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/25 17:40:18 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "shared_state.h"
 #include "style.h"
 #include <unistd.h>
-
-
 
 void	*start_routine(void *arg)
 {
