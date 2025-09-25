@@ -6,13 +6,14 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 15:04:46 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/17 15:06:37 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/25 22:50:09 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "philo.h"
 #include "shared_state.h"
+#include <unistd.h>
 
 void	get_good_fork(t_sim_data *sim_data, int nbr_philo, int index)
 {
@@ -36,6 +37,7 @@ static void	cleanup_philo_threads(t_sim_data *sim_data, int count)
 			.thread.last_meal.mutex);
 		pthread_detach(sim_data->tab_philo[count].thread.thread);
 	}
+	write(STDERR_FILENO, "Error: failed to create philosopher thread\n", 44);
 }
 
 static int	init_single_philo(t_sim_data *sim_data, int i, int nbr_philo)
@@ -63,10 +65,14 @@ int	init_philo(t_sim_data *sim_data, int nbr_philo)
 	while (i < nbr_philo)
 	{
 		if (init_single_philo(sim_data, i, nbr_philo))
-			return (1);
-		if (pthread_create(&sim_data->tab_philo[i].thread.thread, NULL,
-				&start_routine, &sim_data->tab_philo[i]))
 		{
+			free(sim_data->tab_philo);
+			return (1);
+		}
+		if (pthread_create(&sim_data->tab_philo[i].thread.thread,
+				NULL, &start_routine, &sim_data->tab_philo[i]))
+		{
+			pthread_mutex_unlock(&sim_data->start_mutex.mutex);
 			if (i > 0)
 				cleanup_philo_threads(sim_data, i);
 			return (EXIT_FAILURE);

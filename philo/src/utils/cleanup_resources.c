@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup_resources.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:07:46 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/13 03:00:00 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/25 22:38:26 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,20 @@ void	*free_tab_return_null(char **tab)
 
 void	clean_all_mutex(t_sim_data *sim_data)
 {
-	int	i;
+	__uint32_t	i;
 
 	pthread_mutex_destroy(&sim_data->death_mutex.mutex);
 	pthread_mutex_destroy(&sim_data->finished_meal_mutex.mutex);
 	pthread_mutex_destroy(&sim_data->print_mutex.mutex);
 	pthread_mutex_destroy(&sim_data->start_mutex.mutex);
-	i = 0;
-	while (i < sim_data->rules.nbr_of_philo_initialized)
+	if (sim_data->tab_fork)
 	{
-		pthread_mutex_destroy(&sim_data->tab_philo[i].thread.last_meal.mutex);
-		++i;
+		i = 0;
+		while (i < sim_data->rules.nbr_of_philo)
+		{
+			pthread_mutex_destroy(&sim_data->tab_fork[i].mutex);
+			++i;
+		}
 	}
 }
 
