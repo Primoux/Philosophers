@@ -9,7 +9,7 @@ DIR_BUILD	:= .build/
 # FLAGS & COMPILATOR SETTINGS =========================================================
 CC 			:= cc
 DEPS_FLAGS	:= -MMD -MP
-WARN_FLAGS	:= -Wall -Wextra -Werror -g3 -O3 #-fsanitize=thread
+WARN_FLAGS	:= -Wall -Wextra -Werror -g3 -O3 -fsanitize=thread
 C_FLAGS		:= $(WARN_FLAGS) $(DEPS_FLAGS)
 INC_FLAGS	:= -I $(DIR_INC)
 
@@ -65,6 +65,7 @@ F_DEBUG			:=	print_sim.c				\
 F_UTILS			:=	cleanup_resources.c		\
 
 F_SHARED_STATE	:= shared_state.c			\
+					check_death.c			\
 
 F_MAIN			:=	main.c					\
 

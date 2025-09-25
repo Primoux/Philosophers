@@ -70,7 +70,7 @@ __uint32_t	ft_usleep(t_philo *philo, __uint32_t time, __uint32_t start_time)
 		pthread_mutex_unlock(&philo->sim_data->death_mutex.mutex);
 		if (finished_meal(philo))
 			return (1);
-		usleep(150);
+		usleep(450);
 	}
 	return (0);
 }
