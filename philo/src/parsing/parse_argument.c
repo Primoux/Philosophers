@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:53:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/25 20:22:27 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/25 20:24:27 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	check_nbr_arg(int ac)
 {
 	if (ac != 5 && ac != 6)
 	{
-		if (write(STDERR_FILENO, "Error: Invalid nbr of arguments\n", 36) == -1
-			|| write(STDERR_FILENO, "./philo <nbr_of_philo> <TTD> ", 48) == -1
-			|| write(STDERR_FILENO, "<TTE <TTS> [nbr_of_meals]\n", 48) == -1)
+		if (write(STDERR_FILENO, "Error: Invalid nbr of arguments\n", 33) == -1
+			|| write(STDERR_FILENO, "./philo <nbr_of_philo> <TTD> ", 30) == -1
+			|| write(STDERR_FILENO, "<TTE <TTS> [nbr_of_meals]\n", 27) == -1)
 			return (EXIT_FAILURE);
 		return (EXIT_FAILURE);
 	}
