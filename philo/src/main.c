@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:47:53 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/16 09:55:51 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/28 21:58:46 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "style.h"
 #include "utils.h"
 #include <string.h>
+#include <unistd.h>
 
 int	main(int argc, char **argv)
 {
@@ -22,7 +23,10 @@ int	main(int argc, char **argv)
 
 	sim_data = malloc(sizeof(t_sim_data));
 	if (!sim_data)
+	{
+		write(STDERR_FILENO, "Error: malloc failed\n", 22);
 		return (EXIT_FAILURE);
+	}
 	memset(sim_data, 0, sizeof(t_sim_data));
 	if (parse_argument(argc, argv, &sim_data->rules))
 		return (EXIT_FAILURE);

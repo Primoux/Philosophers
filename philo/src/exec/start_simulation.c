@@ -6,10 +6,11 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:05:02 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/10 14:36:34 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/28 22:08:43 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "exec.h"
 #include "philo.h"
 #include "shared_state.h"
 #include <unistd.h>

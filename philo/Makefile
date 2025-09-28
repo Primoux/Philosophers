@@ -8,8 +8,8 @@ DIR_BUILD	:= .build/
 
 # FLAGS & COMPILATOR SETTINGS =========================================================
 CC 			:= cc
-DEPS_FLAGS	:= -MMD -MP
-WARN_FLAGS	:= -Wall -Wextra -Werror -g3 -O3
+DEPS_FLAGS	:= -MMD -MP 
+WARN_FLAGS	:= -Wall -Wextra -Werror -g3 -O3 -Wmissing-prototypes
 C_FLAGS		:= $(WARN_FLAGS) $(DEPS_FLAGS)
 INC_FLAGS	:= -I $(DIR_INC)
 

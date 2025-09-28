@@ -6,10 +6,11 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 15:11:18 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/17 17:32:44 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/28 22:08:27 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "exec.h"
 #include "philo.h"
 #include "shared_state.h"
 #include <unistd.h>
@@ -34,8 +35,8 @@ int	sleeping(t_philo *philo)
 	}
 	remaining = (last_meal + philo->sim_data->rules.time_to_die) - now;
 	sleep_time_ms = philo->sim_data->rules.time_to_sleep;
-	if (ft_usleep(philo, get_min(remaining, sleep_time_ms)
-			* 1000, get_time_to_msec()))
+	if (ft_usleep(philo, get_min(remaining, sleep_time_ms) * 1000,
+			get_time_to_msec()))
 		return (1);
 	return (0);
 }
@@ -47,7 +48,7 @@ int	thinking(t_philo *philo)
 	return (0);
 }
 
-int	catch_fork(t_philo *philo, t_mutex *fork)
+static int	catch_fork(t_philo *philo, t_mutex *fork)
 {
 	while (1)
 	{
@@ -68,7 +69,7 @@ int	catch_fork(t_philo *philo, t_mutex *fork)
 	return (0);
 }
 
-void	update_finished_meal(t_philo *philo)
+static void	update_finished_meal(t_philo *philo)
 {
 	if (philo->sim_data->rules.nbr_of_meal != -1)
 	{

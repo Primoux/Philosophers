@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/18 15:08:33 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/28 22:07:11 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 #include "shared_state.h"
 #include "utils.h"
 #include <style.h>
+#include <unistd.h>
 
-int	init_and_put_fork(t_sim_data *sim_data, int nbr_philo)
+static int	init_and_put_fork(t_sim_data *sim_data, int nbr_philo)
 {
 	int	i;
 
 	i = 0;
 	sim_data->tab_fork = malloc(sizeof(t_mutex) * (nbr_philo + 1));
 	if (!sim_data->tab_fork)
+	{
+		write(STDERR_FILENO, "Error : malloc failed", 22);
 		return (EXIT_FAILURE);
+	}
 	while (i < nbr_philo)
 	{
 		if (pthread_mutex_init(&sim_data->tab_fork[i].mutex, NULL))
@@ -67,7 +71,7 @@ static int	init_death_finished_mutex(t_sim_data *sim_data)
 	return (EXIT_SUCCESS);
 }
 
-int	create_sim_mutex(t_sim_data *sim_data)
+static int	create_sim_mutex(t_sim_data *sim_data)
 {
 	if (init_start_print_mutex(sim_data))
 		return (EXIT_FAILURE);

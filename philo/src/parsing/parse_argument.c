@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:53:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/25 20:24:27 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/28 22:05:36 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils.h"
 #include <unistd.h>
 
-int	check_nbr_arg(int ac)
+static int	check_nbr_arg(int ac)
 {
 	if (ac != 5 && ac != 6)
 	{
