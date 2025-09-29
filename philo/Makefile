@@ -8,10 +8,10 @@ DIR_BUILD	:= .build/
 
 # FLAGS & COMPILATOR SETTINGS =========================================================
 CC 			:= cc
-DEPS_FLAGS	:= -MMD -MP 
+DEPS_FLAGS	:= -MMD -MP
 WARN_FLAGS	:= -Wall -Wextra -Werror -g3 -O3 -Wmissing-prototypes -Wno-unused-result
 #WARN_FLAGS := -Wall -Wextra -Werror -g3 -O3 -Wno-unused-result -Wmissing-prototypes -Wdeprecated -Wshadow -Wformat -Wconversion -Wsign-conversion -Wuninitialized -Wdeprecated
-C_FLAGS		:= $(WARN_FLAGS) $(DEPS_FLAGS) 
+C_FLAGS		:= $(WARN_FLAGS) $(DEPS_FLAGS)
 INC_FLAGS	:= -I $(DIR_INC)
 
 COMP 		:= $(CC) $(C_FLAGS) $(INC_FLAGS)
@@ -39,12 +39,12 @@ endef
 
 # COMPONENTS ==========================================================================
 
-COMPONENTS	:=	PARSING					\
-				DEBUG					\
-				UTILS					\
-				INIT					\
-				EXEC					\
-				SHARED_STATE			\
+COMPONENTS	:=	PARSING						\
+				DEBUG						\
+				UTILS						\
+				INIT						\
+				EXEC						\
+				SHARED_STATE				\
 
 # FILES ===============================================================================
 
@@ -65,7 +65,7 @@ F_DEBUG			:=	print_sim.c				\
 
 F_UTILS			:=	cleanup_resources.c		\
 
-F_SHARED_STATE	:= shared_state.c			\
+F_SHARED_STATE	:=	shared_state.c			\
 					check_death.c			\
 
 F_MAIN			:=	main.c					\
@@ -97,7 +97,7 @@ $(DIR_BUILD)%.o : $(DIR_SRC)%.c $(ANTI_RELINK) | $(DIR_BUILD)
 
 # RULES ===============================================================================
 # build -------------------------------------------------------------------------------
-all : $(NAME) 
+all : $(NAME)
 
 # clean -------------------------------------------------------------------------------
 clean:
