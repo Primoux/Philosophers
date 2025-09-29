@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup_resources.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:07:46 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/29 03:54:53 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/29 17:09:44 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils.h"
 #include <unistd.h>
 
-void	cleanup_philo_threads(t_sim_data *sim_data, int count)
+void	cleanup_philo_threads(t_sim_data *sim_data, __uint32_t count)
 {
 	while (count-- > 0)
 	{

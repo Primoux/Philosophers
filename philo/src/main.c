@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:47:53 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/28 21:58:46 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 17:16:12 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	sim_data = malloc(sizeof(t_sim_data));
 	if (!sim_data)
 	{
-		write(STDERR_FILENO, "Error: malloc failed\n", 22);
+		write(STDERR_FILENO, "Error: malloc failed in main\n", 30);
 		return (EXIT_FAILURE);
 	}
 	memset(sim_data, 0, sizeof(t_sim_data));

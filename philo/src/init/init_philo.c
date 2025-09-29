@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 15:04:46 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/29 16:51:47 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 17:12:43 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	init_and_create_philo(t_sim_data *sim_data, __uint32_t i,
 	{
 		pthread_mutex_unlock(&sim_data->start_mutex.mutex);
 		if (i > 0)
-			cleanup_philo_threads(sim_data, (__int32_t)i);
+			cleanup_philo_threads(sim_data, i);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -72,7 +72,7 @@ int	init_philo(t_sim_data *sim_data, __uint32_t nbr_philo)
 	sim_data->tab_philo = malloc(sizeof(t_philo) * (nbr_philo + 1));
 	if (!sim_data->tab_philo)
 	{
-		write(STDERR_FILENO, "Error: malloc failed\n", 22);
+		write(STDERR_FILENO, "Error: malloc failed in init_philo\n", 36);
 		return (EXIT_FAILURE);
 	}
 	i = 0;

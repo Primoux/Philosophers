@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 23:02:14 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/28 22:19:16 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 17:09:50 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@
 int		is_all_digits(const char *str);
 int		ft_atoi(const char *str, int *error);
 void	cleanup_resources(t_sim_data *sim_data);
-void	cleanup_philo_threads(t_sim_data *sim_data, int count);
+void	cleanup_philo_threads(t_sim_data *sim_data, __uint32_t count);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_simulation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/29 03:19:25 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/29 17:17:02 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	init_and_put_fork(t_sim_data *sim_data, __uint32_t nbr_philo)
 	sim_data->tab_fork = malloc(sizeof(t_mutex) * (nbr_philo + 1U));
 	if (!sim_data->tab_fork)
 	{
-		write(STDERR_FILENO, "Error : malloc failed", 22);
+		write(STDERR_FILENO, "Error: malloc failed in init_and_put_fork\n", 43);
 		return (EXIT_FAILURE);
 	}
 	while (i < nbr_philo)
