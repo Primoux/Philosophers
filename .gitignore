@@ -2,7 +2,3 @@
 /philo/.build
 *.json
 .vscode/
-.gdb*
-*grind*
-log
-out
