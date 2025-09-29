@@ -6,7 +6,7 @@
 /*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 15:11:18 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/29 03:27:32 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/29 03:39:00 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 #include "philo.h"
 #include "shared_state.h"
 #include <unistd.h>
-
-static __uint32_t	get_min_u32(__uint32_t a, __uint32_t b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
 
 int	sleeping(t_philo *philo)
 {

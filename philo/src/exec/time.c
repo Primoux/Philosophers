@@ -6,7 +6,7 @@
 /*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 18:59:52 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/29 03:30:06 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/29 03:39:11 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #include "shared_state.h"
 #include <sys/time.h>
 #include <unistd.h>
+
+__uint32_t	get_min_u32(__uint32_t a, __uint32_t b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
 
 __uint32_t	get_time_to_msec(void)
 {
@@ -55,7 +62,8 @@ __uint32_t	ft_usleep(t_philo *philo, __uint32_t time, __uint32_t start_time)
 			return (1U);
 		pthread_mutex_lock(&philo->sim_data->death_mutex.mutex);
 		if (get_time_interval_in_msec(&philo->sim_data->start_mutex)
-			- mutex_get_data(&philo->thread.last_meal) >= philo->sim_data->rules.time_to_die)
+			- mutex_get_data(&philo->thread.last_meal)
+			>= philo->sim_data->rules.time_to_die)
 		{
 			philo->sim_data->death_mutex.data = 1U;
 			pthread_mutex_unlock(&philo->sim_data->death_mutex.mutex);

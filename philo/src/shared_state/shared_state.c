@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shared_state.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:27:34 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/25 17:42:46 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 03:38:27 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	mutex_set_data(t_mutex *mutex, __uint32_t data)
 
 int	finished_meal(t_philo *philo)
 {
-	if (mutex_get_data(&philo->sim_data->finished_meal_mutex) >= philo->sim_data->rules.nbr_of_philo)
+	if (mutex_get_data(&philo->sim_data->finished_meal_mutex)
+		>= philo->sim_data->rules.nbr_of_philo)
 		return (1);
 	return (0);
 }

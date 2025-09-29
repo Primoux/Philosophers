@@ -6,7 +6,7 @@
 /*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:48:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/29 03:20:23 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/29 03:37:40 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ typedef struct s_sim_data
 int							parse_argument(int ac, char **av, t_rules *rules);
 int							init_sim_data(char **av, t_rules *rules);
 int							init_simulation(t_sim_data *sim_data);
-int							init_philo(t_sim_data *sim_data, __uint32_t nbr_philo);
+int							init_philo(t_sim_data *sim_data,
+								__uint32_t nbr_philo);
 __uint32_t					get_time_to_msec(void);
 __uint32_t					get_time_interval_in_msec(t_mutex *mutex);
 __int32_t					get_min(__int32_t time1, __int32_t time2);

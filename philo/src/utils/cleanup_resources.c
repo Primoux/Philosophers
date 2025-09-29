@@ -6,7 +6,7 @@
 /*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:07:46 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/29 03:07:33 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/29 03:54:53 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	cleanup_philo_threads(t_sim_data *sim_data, int count)
 {
 	while (count-- > 0)
 	{
-		pthread_mutex_destroy(&sim_data->tab_philo[count].thread.last_meal.mutex);
+		pthread_mutex_destroy(&sim_data->tab_philo[count]
+			.thread.last_meal.mutex);
 		pthread_detach(sim_data->tab_philo[count].thread.thread);
 	}
 	write(STDERR_FILENO, "Error: failed to create a philosopher\n", 39);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_death.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 17:42:57 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/25 17:45:34 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 03:38:08 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	check_own_death(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->sim_data->death_mutex.mutex);
 	if (get_time_interval_in_msec(&philo->sim_data->start_mutex)
-		- mutex_get_data(&philo->thread.last_meal) >= philo->sim_data->rules.time_to_die)
+		- mutex_get_data(&philo->thread.last_meal)
+		>= philo->sim_data->rules.time_to_die)
 	{
 		philo->sim_data->death_mutex.data = 1;
 		pthread_mutex_unlock(&philo->sim_data->death_mutex.mutex);
