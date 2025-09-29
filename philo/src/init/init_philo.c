@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 15:04:46 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/29 03:58:12 by enzo             ###   ########.fr       */
+/*   Updated: 2025/09/29 16:51:47 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	init_and_create_philo(t_sim_data *sim_data, __uint32_t i,
 			&start_routine, &sim_data->tab_philo[i]))
 	{
 		pthread_mutex_unlock(&sim_data->start_mutex.mutex);
-		if (i > 0U)
+		if (i > 0)
 			cleanup_philo_threads(sim_data, (__int32_t)i);
 		return (EXIT_FAILURE);
 	}
@@ -69,17 +69,18 @@ int	init_philo(t_sim_data *sim_data, __uint32_t nbr_philo)
 {
 	__uint32_t	i;
 
-	sim_data->tab_philo = malloc(sizeof(t_philo) * nbr_philo + 1U);
+	sim_data->tab_philo = malloc(sizeof(t_philo) * (nbr_philo + 1));
 	if (!sim_data->tab_philo)
 	{
 		write(STDERR_FILENO, "Error: malloc failed\n", 22);
 		return (EXIT_FAILURE);
 	}
 	i = 0;
-	while (i++ < nbr_philo)
+	while (i < nbr_philo)
 	{
 		if (init_and_create_philo(sim_data, i, nbr_philo))
 			return (EXIT_FAILURE);
+		i++;
 	}
 	return (EXIT_SUCCESS);
 }
