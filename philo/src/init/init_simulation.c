@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_simulation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:21:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/28 22:07:11 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 03:19:25 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 #include <style.h>
 #include <unistd.h>
 
-static int	init_and_put_fork(t_sim_data *sim_data, int nbr_philo)
+static int	init_and_put_fork(t_sim_data *sim_data, __uint32_t nbr_philo)
 {
-	int	i;
+	__uint32_t	i;
 
 	i = 0;
-	sim_data->tab_fork = malloc(sizeof(t_mutex) * (nbr_philo + 1));
+	sim_data->tab_fork = malloc(sizeof(t_mutex) * (nbr_philo + 1U));
 	if (!sim_data->tab_fork)
 	{
 		write(STDERR_FILENO, "Error : malloc failed", 22);
@@ -39,8 +39,8 @@ static int	init_and_put_fork(t_sim_data *sim_data, int nbr_philo)
 			}
 			return (EXIT_FAILURE);
 		}
-		sim_data->tab_fork[i].id = i + 1;
-		sim_data->tab_fork[i].data = 0;
+		sim_data->tab_fork[i].id = i + 1U;
+		sim_data->tab_fork[i].data = 0U;
 		i++;
 	}
 	return (EXIT_SUCCESS);

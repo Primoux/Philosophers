@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_argument.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:53:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/28 22:05:36 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 03:33:29 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static int	check_nbr_arg(int ac)
 {
 	if (ac != 5 && ac != 6)
 	{
-		if (write(STDERR_FILENO, "Error: Invalid nbr of arguments\n", 33) == -1
-			|| write(STDERR_FILENO, "./philo <nbr_of_philo> <TTD> ", 30) == -1
-			|| write(STDERR_FILENO, "<TTE <TTS> [nbr_of_meals]\n", 27) == -1)
-			return (EXIT_FAILURE);
+		write(STDERR_FILENO, "Error: Invalid nbr of arguments\n", 33);
+		write(STDERR_FILENO, "./philo <nbr_of_philo> <TTD> ", 30);
+		write(STDERR_FILENO, "<TTE <TTS> [nbr_of_meals]\n", 27);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

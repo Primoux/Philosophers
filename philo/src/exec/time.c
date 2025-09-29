@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 18:59:52 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/16 10:23:05 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 03:30:06 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ __uint32_t	get_time_to_msec(void)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return ((__uint32_t)(tv.tv_sec * 1000) + (__uint32_t)(tv.tv_usec / 1000));
 }
 
 __uint32_t	get_time_interval_in_msec(t_mutex *mutex)
@@ -33,8 +33,8 @@ __uint32_t	get_time_interval_in_msec(t_mutex *mutex)
 
 	start_time = mutex_get_data(mutex);
 	gettimeofday(&tv, NULL);
-	sec = tv.tv_sec * 1000;
-	usec = tv.tv_usec / 1000;
+	sec = (__uint32_t)(tv.tv_sec * 1000);
+	usec = (__uint32_t)(tv.tv_usec / 1000);
 	actual_time = sec + usec;
 	return (actual_time - start_time);
 }
@@ -49,28 +49,27 @@ __int32_t	get_min(__int32_t time1, __int32_t time2)
 
 __uint32_t	ft_usleep(t_philo *philo, __uint32_t time, __uint32_t start_time)
 {
-	while (get_time_to_msec() - start_time < time / 1000)
+	while (get_time_to_msec() - start_time < time / 1000U)
 	{
 		if (mutex_get_data(&philo->sim_data->death_mutex))
-			return (1);
+			return (1U);
 		pthread_mutex_lock(&philo->sim_data->death_mutex.mutex);
 		if (get_time_interval_in_msec(&philo->sim_data->start_mutex)
-			- mutex_get_data(&philo->thread.last_meal) >= philo->sim_data->rules
-			.time_to_die)
+			- mutex_get_data(&philo->thread.last_meal) >= philo->sim_data->rules.time_to_die)
 		{
-			philo->sim_data->death_mutex.data = 1;
+			philo->sim_data->death_mutex.data = 1U;
 			pthread_mutex_unlock(&philo->sim_data->death_mutex.mutex);
 			pthread_mutex_lock(&philo->sim_data->print_mutex.mutex);
-			printf("%d %zu died\n",
+			printf("%u %zu died\n",
 				get_time_interval_in_msec(&philo->sim_data->start_mutex),
 				philo->thread.id);
 			pthread_mutex_unlock(&philo->sim_data->print_mutex.mutex);
-			return (1);
+			return (1U);
 		}
 		pthread_mutex_unlock(&philo->sim_data->death_mutex.mutex);
 		if (finished_meal(philo))
-			return (1);
+			return (1U);
 		usleep(450);
 	}
-	return (0);
+	return (0U);
 }

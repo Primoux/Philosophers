@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
 #include "exec.h"
+#include "philo.h"
 #include "shared_state.h"
 #include "style.h"
 #include <unistd.h>
@@ -26,8 +26,8 @@ void	*start_routine(void *arg)
 	if (thinking(philo))
 		return (NULL);
 	if (philo->thread.id % 2 == 0)
-		if (ft_usleep(philo, philo->sim_data->rules.time_to_eat
-				/ 2 * 1000, get_time_to_msec()))
+		if (ft_usleep(philo, philo->sim_data->rules.time_to_eat / 2 * 1000,
+				get_time_to_msec()))
 			return (NULL);
 	while (1)
 	{

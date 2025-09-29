@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   print_sim.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 00:22:30 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/28 22:06:26 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 03:30:40 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "debug.h"
 #include "philo.h"
 #include "style.h"
-#include "debug.h"
 
 void	print_sim(t_sim_data sim_data)
 {

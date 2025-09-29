@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sim_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 23:13:48 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/25 20:16:52 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 03:16:48 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils.h"
 #include <unistd.h>
 
-static void	put_in_tab(int i, int nbr, t_rules *rules)
+static void	put_in_tab(int i, __uint32_t nbr, t_rules *rules)
 {
 	if (i == 1)
 		rules->nbr_of_philo = nbr;
@@ -26,7 +26,7 @@ static void	put_in_tab(int i, int nbr, t_rules *rules)
 	else if (i == 4)
 		rules->time_to_sleep = nbr;
 	else if (i == 5)
-		rules->nbr_of_meal = nbr;
+		rules->nbr_of_meal = (__int32_t)nbr;
 }
 
 static int	check_arg(char *arg, t_rules *rules, int i)
@@ -37,17 +37,15 @@ static int	check_arg(char *arg, t_rules *rules, int i)
 	nbr = ft_atoi(arg, &error);
 	if (error != 0)
 	{
-		if (write(STDERR_FILENO, "Error: numeric overflow\n", 25) == -1)
-			return (EXIT_FAILURE);
+		write(STDERR_FILENO, "Error: numeric overflow\n", 25);
 		return (EXIT_FAILURE);
 	}
 	else if (nbr <= 0)
 	{
-		if (write(STDERR_FILENO, "Error: invalid argument\n", 25) == -1)
-			return (EXIT_FAILURE);
+		write(STDERR_FILENO, "Error: invalid argument\n", 25);
 		return (EXIT_FAILURE);
 	}
-	put_in_tab(i, nbr, rules);
+	put_in_tab(i, (__uint32_t)nbr, rules);
 	return (EXIT_SUCCESS);
 }
 

@@ -9,8 +9,9 @@ DIR_BUILD	:= .build/
 # FLAGS & COMPILATOR SETTINGS =========================================================
 CC 			:= cc
 DEPS_FLAGS	:= -MMD -MP 
-WARN_FLAGS	:= -Wall -Wextra -Werror -g3 -O3 -Wmissing-prototypes
-C_FLAGS		:= $(WARN_FLAGS) $(DEPS_FLAGS)
+#WARN_FLAGS	:= -Wall -Wextra -Werror -g3 -O3 -Wmissing-prototypes -Wno-unused-result
+WARN_FLAGS := -Wall -Wextra -Werror -g3 -O3 -Wno-unused-result -Wmissing-prototypes -Wdeprecated -Wshadow -Wformat -Wconversion -Wsign-conversion -Wuninitialized -Wdeprecated
+C_FLAGS		:= $(WARN_FLAGS) $(DEPS_FLAGS) 
 INC_FLAGS	:= -I $(DIR_INC)
 
 COMP 		:= $(CC) $(C_FLAGS) $(INC_FLAGS)

@@ -32,8 +32,7 @@ void	mutex_set_data(t_mutex *mutex, __uint32_t data)
 
 int	finished_meal(t_philo *philo)
 {
-	if (mutex_get_data(&philo->sim_data->finished_meal_mutex)
-		>= philo->sim_data->rules.nbr_of_philo)
+	if (mutex_get_data(&philo->sim_data->finished_meal_mutex) >= philo->sim_data->rules.nbr_of_philo)
 		return (1);
 	return (0);
 }

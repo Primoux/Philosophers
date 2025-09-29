@@ -16,8 +16,7 @@ int	check_own_death(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->sim_data->death_mutex.mutex);
 	if (get_time_interval_in_msec(&philo->sim_data->start_mutex)
-		- mutex_get_data(&philo->thread.last_meal)
-		>= philo->sim_data->rules.time_to_die)
+		- mutex_get_data(&philo->thread.last_meal) >= philo->sim_data->rules.time_to_die)
 	{
 		philo->sim_data->death_mutex.data = 1;
 		pthread_mutex_unlock(&philo->sim_data->death_mutex.mutex);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_all_digit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 23:17:28 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/25 20:23:11 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 03:07:23 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,14 @@ int	is_all_digits(const char *str)
 	i = 0;
 	if (!str[i])
 	{
-		if (write(STDERR_FILENO, "Error : empty arg\n", 19) == -1)
-			return (EXIT_FAILURE);
+		write(STDERR_FILENO, "Error : empty arg\n", 19);
 		return (EXIT_FAILURE);
 	}
 	while (str[i])
 	{
 		if (str[i] > '9' || str[i] < '0')
 		{
-			if (write(STDERR_FILENO,
-					"Error: invalid character in argument\n", 38) == -1)
-				return (EXIT_FAILURE);
+			write(STDERR_FILENO, "Error: invalid character in argument\n", 38);
 			return (EXIT_FAILURE);
 		}
 		++i;

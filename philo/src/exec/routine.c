@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 15:11:18 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/28 22:08:27 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/09/29 03:27:32 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 #include "shared_state.h"
 #include <unistd.h>
 
+static __uint32_t	get_min_u32(__uint32_t a, __uint32_t b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
 int	sleeping(t_philo *philo)
 {
 	__uint32_t	now;
 	__uint32_t	last_meal;
 	__uint32_t	remaining;
 	__uint32_t	sleep_time_ms;
+	__uint32_t	min_time;
 
 	if (safe_printf(philo, "is sleeping"))
 		return (1);
@@ -30,13 +38,13 @@ int	sleeping(t_philo *philo)
 	pthread_mutex_unlock(&philo->thread.last_meal.mutex);
 	if (now >= last_meal + philo->sim_data->rules.time_to_die)
 	{
-		mutex_set_data(&philo->sim_data->death_mutex, 1);
+		mutex_set_data(&philo->sim_data->death_mutex, 1U);
 		return (1);
 	}
 	remaining = (last_meal + philo->sim_data->rules.time_to_die) - now;
 	sleep_time_ms = philo->sim_data->rules.time_to_sleep;
-	if (ft_usleep(philo, get_min(remaining, sleep_time_ms) * 1000,
-			get_time_to_msec()))
+	min_time = get_min_u32(remaining, sleep_time_ms);
+	if (ft_usleep(philo, min_time * 1000U, get_time_to_msec()))
 		return (1);
 	return (0);
 }
@@ -76,7 +84,7 @@ static void	update_finished_meal(t_philo *philo)
 		if (philo->thread.nbr_meal == philo->sim_data->rules.nbr_of_meal)
 		{
 			mutex_set_data(&philo->sim_data->finished_meal_mutex,
-				mutex_get_data(&philo->sim_data->finished_meal_mutex) + 1);
+				mutex_get_data(&philo->sim_data->finished_meal_mutex) + 1U);
 		}
 	}
 }
@@ -95,7 +103,7 @@ int	eating(t_philo *philo)
 		return (1);
 	update_finished_meal(philo);
 	mutex_set_data(&philo->thread.last_meal, time);
-	if (ft_usleep(philo, philo->sim_data->rules.time_to_eat * 1000,
+	if (ft_usleep(philo, philo->sim_data->rules.time_to_eat * 1000U,
 			get_time_to_msec()))
 	{
 		mutex_set_data(philo->left_fork, FREE);
