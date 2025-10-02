@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shared_state.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:27:34 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/29 03:38:27 by enzo             ###   ########.fr       */
+/*   Updated: 2025/10/02 21:27:17 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ __uint32_t	mutex_get_data(t_mutex *mutex)
 	return (data);
 }
 
-void	mutex_set_data(t_mutex *mutex, __uint32_t data)
+void	mutex_set_data(t_mutex *mutex, __uint32_t state)
 {
 	pthread_mutex_lock(&mutex->mutex);
-	mutex->data = data;
+	mutex->data = state;
 	pthread_mutex_unlock(&mutex->mutex);
 }
 
